@@ -1,3 +1,8 @@
+-- Enable persistent undo
+vim.opt.undofile = true
+-- Set the directory where undo files will be saved
+vim.opt.undodir = vim.fn.stdpath 'config' .. '/undodir'
+
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
@@ -260,6 +265,23 @@ require('lazy').setup({
   {
     'ThePrimeagen/vim-be-good',
     cmd = 'VimBeGood',
+  },
+  {
+    'mbbill/undotree',
+    cmd = 'UndotreeToggle',
+    keys = {
+      {
+        '<leader>u',
+        function()
+          vim.cmd 'UndotreeToggle' -- Toggle the UndoTree window
+          vim.cmd 'wincmd p' -- Focus the last opened window, which should be UndoTree
+        end,
+        desc = 'Toggle and Focus UndoTree',
+      },
+    },
+    config = function()
+      -- Optional additional configuration
+    end,
   },
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
