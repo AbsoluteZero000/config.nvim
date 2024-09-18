@@ -27,8 +27,6 @@ This repository contains my personal Neovim configuration files, built for produ
    Make sure the following dependencies are installed:
    - Neovim (v0.8+)
    - `ripgrep` (for fuzzy finding)
-   - `node.js` (for LSP support in JavaScript/TypeScript)
-   - `python3` and `pip` (for Python LSP support)
 
 4. **Start Neovim:**
    Once installed, open Neovim:
