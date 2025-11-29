@@ -1,8 +1,8 @@
-tags
-test.sh
-.luarc.json
-nvim
-undodir/
-spell/
-tmp/
-lazy-lock.json
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data
