@@ -1,8 +1,6 @@
 -- * disable/enabled LazyVim plugins
 -- * override the configuration of LazyVim plugins
 return {
-  -- add gruvbox
-  { "ellisonleao/gruvbox.nvim" },
 
   -- Configure LazyVim to load gruvbox
   {
@@ -11,6 +9,8 @@ return {
       colorscheme = "gruvbox",
     },
   },
+  -- add gruvbox
+  { "ellisonleao/gruvbox.nvim" },
 
   -- change trouble config
   {
@@ -73,14 +73,16 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       "jose-elias-alvarez/typescript.nvim",
-      init = function()
-        local LspUtil = require("snacks.util").lsp
-        LspUtil.on(function(_, buffer)
-          -- stylua: ignore
-          vim.keymap.set( "n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
-          vim.keymap.set("n", "<leader>cR", "TypescriptRenameFile", { desc = "Rename File", buffer = buffer })
-        end)
-      end,
+       init = function()
+         local LspUtil = require("snacks.util").lsp
+         LspUtil.on(function(_, buffer)
+           if type(buffer) == "number" then
+             -- stylua: ignore
+             vim.keymap.set( "n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
+             vim.keymap.set("n", "<leader>cR", "TypescriptRenameFile", { desc = "Rename File", buffer = buffer })
+           end
+         end)
+       end,
     },
     ---@class PluginLspOpts
     opts = {
@@ -106,7 +108,6 @@ return {
 
   -- for typescript, LazyVim also includes extra specs to properly setup lspconfig,
   -- treesitter, mason and typescript.nvim. So instead of the above, you can use:
-  { import = "lazyvim.plugins.extras.lang.typescript" },
 
   -- add more treesitter parsers
   {
@@ -173,10 +174,10 @@ return {
   -- { import = "lazyvim.plugins.extras.ui.mini-starter" },
 
   -- add jsonls and schemastore packages, and setup treesitter for json, json5 and jsonc
-  { import = "lazyvim.plugins.extras.lang.json" },
 
   -- add any tools you want to have installed below
   {
+    { "github/copilot.vim" },
     { "mfussenegger/nvim-jdtls" },
     {
       "mason-org/mason.nvim",

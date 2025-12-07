@@ -20,6 +20,8 @@ require("lazy").setup({
 
     -- Add LazyVim extras (generic — works on all versions)
     { import = "lazyvim.plugins.extras" },
+    { import = "lazyvim.plugins.extras.lang.typescript" },
+    { import = "lazyvim.plugins.extras.lang.json" },
 
     -- Your own plugins LAST
     { import = "plugins" },
